@@ -1,0 +1,16 @@
+---
+- name: Add users
+  hosts: all
+  vars_files:
+    - ./vars/names.yml
+    - ./vars/pwd.yml
+  tasks:
+    - name: Create users
+      user:
+        name: "{{ item }}"
+        comment: "{{ item }}@example.com"
+        home: "/home/{{ item }}"
+        update_password: on_create
+        password: "{{ password | password_hash('sha512') }}"
+        state: present
+      loop: "{{ users_list }}"

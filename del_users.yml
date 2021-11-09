@@ -1,0 +1,12 @@
+---
+- name: Delete users. Testing purpose.
+  hosts: all
+  vars_files:
+    - ./vars/names.yml
+  tasks:
+    - name: Delete users
+      user:
+        name: "{{ item }}"
+        remove: yes
+        state: absent
+      loop: "{{ users_list }}"

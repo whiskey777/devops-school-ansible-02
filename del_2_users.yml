@@ -1,0 +1,14 @@
+---
+- name: Delete 2 users only for testing purpose
+  hosts: all
+  tasks:
+    - name: Delete bob
+      user:
+        name: "bob"
+        remove: yes
+        state: absent
+    - name: Delete carol
+      user:
+        name: "carol"
+        remove: yes
+        state: absent
